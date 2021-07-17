@@ -1,0 +1,144 @@
+## 过程：
+  最早学嵌入式，编的更贴近机器语言，直接操作寄存器
+  最早学C也是面向过程
+  java属于面向对象编，类是一种数据类型
+  
+
+## 类:
+class Bird{
+}
+
+## 方法:
+ [权限修饰符] [返回值类型]方法名([参数类型 参数名])[throws 异常类型]{
+	//方法体
+	return 返回值;
+}
+[权限修饰符]:有public, private, protected
+[返回值类型]:用来指定方法返回数据的类型，可以是任何类型，如果方法不需要返回值，则使用void关键字
+
+
+public class Book { // 创建书类
+	public static void main(String[] args) {
+		Book book = new Book(); // 创建书类对象
+		int shelf = 30; // 初始化书架上书的本数（实参）
+		int box = 40; // 初始化箱子里书的本数（实参）
+		// 把书架上的书全部放进箱子后，输出箱子里书的总数
+		System.out.println("把书架上的书全部放进箱子后，箱子里一共有"
+				+ book.add(shelf, box) + "本书。\n明细如下：书架上"
+				+ shelf + "本书，箱子里原有" + box + "本书。");
+	}
+	private int add(int shelf, int box) { // 把书架上、箱子里的书相加求和（形参）
+		box = box + shelf; // 对box进行加shelf操作
+		return box; // 返回box
+	}
+}
+
+
+public class ExchangeRate { // 创建汇率类
+	public static void main(String[] args) {
+		ExchangeRate rate = new ExchangeRate(); // 创建RefTest对象
+		double[] denomination = { 1, 10, 100 }; // 定义一维数组，用来存储纸币面额（实参）
+		// 输出数组中三种面值的美钞,直接改变了数组里元素大小
+		System.out.print("美元：");
+		for (int i = 0; i < denomination.length; i++) { // 使用for循环遍历数组
+			System.out.print(denomination[i] + "美元　");
+		}
+		rate.change(denomination); // 调用方法改变数组中元素的值
+		// 输出与三种面值的美钞等值的人民币
+		System.out.print("\n人民币：");
+		for (int j = 0; j < denomination.length; j++) { // 使用for循环遍历数组
+			System.out.print(denomination[j] + "元　");
+		}
+	}
+	// 定义一个方法，方法的参数为一维数组（形参）
+	public void change(double[] i) {
+		for (int j = 0; j < i.length; j++) { // 使用for循环遍历数组
+			i[j] = i[j] * 6.903; // 将数组中的元素乘以当前汇率
+		}
+	}
+}
+
+
+
+## 构造方法：
+在类中除了成员方法之外，还存在一种特殊类型的方法，那就是构造方法。构造方法是一个与类同名的方法，对象的创建就是通过构造方法完成的。每当类实例化一个对象时，类都会自动调用构造方法。 构造方法的特点如下∶
+
+构造方法没有返回类型，也不能定义为void。
+构造方法的名称要与本类的名称相同。
+构造方法的主要作用是完成对象的初始化工作，它能把定义对象的参数传给对象成员。
+
+
+## static关键字
+1. 静态变量
+2. 静态方法
+public class Pool { // 创建水池类
+	public static int water = 0; // 初始化静态变量之水池中的水量为0
+	public static void outlet() { // 放水，一次放出2个单位
+		if (water >= 2) { // 如果水池中的水量大于等于2个单位
+			water = water - 2; // 放出2个单位的水
+		} else { // 如果水池中的水量小于2个单位
+			water = 0; // 水池中的水量为0
+		}
+	}
+	public static void inlet() { // 注水，一次注入3个单位
+		water = water + 3; // 注入3个单位的水
+	}
+	public static void main(String[] args) {
+		System.out.println("水池的水量：" + Pool.water); // 输出水池当前水量
+		System.out.println("水池注水两次。");
+		Pool2.inlet(); // 调用静态的注水方法
+		Pool2.inlet(); // 调用静态的注水方法
+		System.out.println("水池的水量：" + Pool.water); // 输出水池当前水量
+		System.out.println("水池放水一次。");
+		Pool2.outlet(); // 调用静态的放水方法
+		System.out.println("水池的水量：" + Pool.water); // 输出水池当前水量
+	}
+}
+3. 静态代码块
+public class StaticTest {
+	static String name;
+	// 静态代码块
+	static {
+		System.out.println(name + "静态代码块");
+	}
+	// 非静态代码块
+	{
+		System.out.println(name + "非静态代码块");
+	}
+	public StaticTest(String a) {
+		name = a;
+		System.out.println(name + "构造方法");
+	}
+	public void method() {
+		System.out.println(name + "成员方法");
+	}
+	public static void main(String[] args) {
+		StaticTest s1;// 声明的时候就已经运行静态代码块了
+		StaticTest s2 = new StaticTest("s2");// new的时候才会运行构造方法
+		StaticTest s3 = new StaticTest("s3");
+		s3.method();// 只有调用的时候才会运行
+	}
+}
+
+
+
+## 类的主方法
+主方法就是main,程序入口，控制程序流转运行顺序
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
